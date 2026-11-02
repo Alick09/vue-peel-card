@@ -1,8 +1,8 @@
 name: Publish to npm
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [master]
 
 permissions:
   contents: read
@@ -24,16 +24,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify release tag matches package version
-        env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+      - name: Check whether this version is already published
+        id: npm-version
         run: |
-          node -e 'const version = require("./package.json").version; if (process.env.RELEASE_TAG !== `v${version}`) { console.error(`Expected release tag v${version}, got ${process.env.RELEASE_TAG}`); process.exit(1) }'
+          PACKAGE_NAME=$(node -p 'require("./package.json").name')
+          PACKAGE_VERSION=$(node -p 'require("./package.json").version')
+          if npm view "$PACKAGE_NAME@$PACKAGE_VERSION" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "$PACKAGE_NAME@$PACKAGE_VERSION is already published; skipping."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Build package
         run: npm run build
 
       - name: Publish package
+        if: steps.npm-version.outputs.published == 'false'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
