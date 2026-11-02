@@ -1,0 +1,37 @@
+{
+  "name": "vue-peel-card",
+  "version": "0.2.2",
+  "description": "Vue 3 component: a WebGL card you can peel off by its edge. HTML card content, realistic curl that follows your finger, toggle mode.",
+  "keywords": ["vue", "vue3", "webgl", "card", "peel", "page-curl", "flashcards", "animation"],
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/vue-peel-card.umd.cjs",
+  "module": "./dist/vue-peel-card.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/vue-peel-card.js",
+      "require": "./dist/vue-peel-card.umd.cjs"
+    },
+    "./src/PeelCard.vue": "./src/PeelCard.vue"
+  },
+  "files": ["dist", "src", "types"],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.0.0",
+    "vue": "^3.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
