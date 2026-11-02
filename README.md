@@ -3,6 +3,10 @@
 Vue 3 component: a card you can peel off by its edge. Rendered with WebGL; the card content is plain HTML.
 The curl follows your finger and rotates if you drag up or down. Includes shadows, a highlight on the fold and the back side of the paper.
 
+## Demo
+
+![Animated demo of vue-peel-card](assets/demo.webp)
+
 ## Installation
 
 ```bash
