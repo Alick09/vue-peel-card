@@ -1,6 +1,6 @@
 {
   "name": "vue-peel-card",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Vue 3 component: a WebGL card you can peel off by its edge. HTML card content, realistic curl that follows your finger, toggle mode.",
   "keywords": ["vue", "vue3", "webgl", "card", "peel", "page-curl", "flashcards", "animation"],
   "license": "MIT",
